@@ -1,0 +1,38 @@
+--- a/src/App.vue	2026-10-20 14:41:40.000000000 -0600
++++ b/src/App.vue	2026-10-23 13:30:46.003725787 -0600
+@@ -15,7 +15,7 @@
+   { href: '#ventajas', t: 'Ventajas' }, { href: '#faq', t: 'FAQ' }, { href: '#contacto', t: 'Contacto' }
+ ]
+ const niveles = [
+-  { p: '10%', i: 'bi-link-45deg', t: 'Primer pago' }, { p: '12%', i: 'bi-check2-circle', t: 'Mens. cerca' }, { p: '15%', i: 'bi-lock-fill', t: 'Nivel máximo desbloqueado' }
++  { p: '10%', i: 'bi-check-lg', t: 'Primer pago' }, { p: '12%', i: 'bi-check-lg', t: 'Mens. cerca' }, { p: '15%', i: 'bi-unlock-fill', t: 'Nivel máximo desbloqueado' }
+ ]
+ const beneficios = [
+   { i: 'bi-coin', t: 'Equipos comerciales para crecer', d: 'Alta durabilidad, eficiencia y tecnología LG.' },
+@@ -86,7 +86,7 @@
+   <!-- NAV -->
+   <nav class="navbar navbar-expand-lg nav-lg fixed-top">
+     <div class="container">
+-      <a class="navbar-brand" href="#inicio"><SmartImg name="logo" alt="LG Commercial Laundry México" eager class="logo"><strong class="logo-txt">LG <small>Commercial Laundry México</small></strong></SmartImg></a>
++      <a class="navbar-brand" href="#inicio"><SmartImg name="logo-lg" fallback="logo" fb-class="logo-crop" alt="LG Commercial Laundry México" eager class="logo"><strong class="logo-txt">LG <small>Commercial Laundry México</small></strong></SmartImg></a>
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú"><span class="navbar-toggler-icon"></span></button>
+       <div id="menu" class="collapse navbar-collapse">
+         <ul class="navbar-nav mx-auto gap-lg-3">
+@@ -107,7 +107,7 @@
+         <h1 class="hero-h1">Llegamos al <span class="silver">15%</span></h1>
+         <p class="hero-sub">Ahora haz crecer tu proyecto.</p>
+         <ul class="niveles list-unstyled">
+-          <li v-for="(n, k) in niveles" :key="n.p"><b>{{ n.p }}</b><i class="bi" :class="n.i"></i><small>{{ n.t }}</small><span v-if="k < 2" class="arrow">→</span></li>
++          <li v-for="(n, k) in niveles" :key="n.p" :class="{ max: k === niveles.length - 1 }"><b>{{ n.p }}</b><i class="bi" :class="n.i"></i><small>{{ n.t }}</small></li>
+         </ul>
+         <div class="d-flex flex-wrap gap-2">
+           <a class="btn btn-lg-red" href="#contacto">Solicita tu cotización <i class="bi bi-arrow-right"></i></a>
+@@ -233,7 +233,7 @@
+   <footer class="foot">
+     <div class="container">
+       <div class="row align-items-center gy-3">
+-        <div class="col-lg-4"><SmartImg name="logo-blanco" fallback="logo" fb-class="logo-invert" alt="LG Commercial Laundry México" class="logo-f"><strong class="logo-txt">LG <small>Commercial Laundry México</small></strong></SmartImg><div class="small">Lavamos tu negocio hacia el mañana</div></div>
++        <div class="col-lg-4"><SmartImg name="logo-lg-blanco" fallback="logo" fb-class="logo-crop logo-foot" alt="LG Commercial Laundry México" class="logo-f"><strong class="logo-txt">LG <small>Commercial Laundry México</small></strong></SmartImg><div class="small">Lavamos tu negocio hacia el mañana</div></div>
+         <div class="col-6 col-lg-3"><i class="bi bi-telephone-fill fs-4 me-2"></i><span class="small">Llámanos<br><a :href="TEL.href" class="fw-bold fs-5">{{ TEL.texto }}</a><br>Lunes a Viernes de 9:00 a 18:00 hrs</span></div>
+         <div class="col-6 col-lg-3"><i class="bi bi-geo-alt-fill fs-4 me-2"></i><span class="small">Visítanos<br>Calle 22 de abril #63<br>C.P. 45235 Zapopan, Jalisco, México</span></div>
+         <div class="col-lg-2"><span class="small d-block">Síguenos</span><a v-for="r in REDES" :key="r.n" :href="r.url" target="_blank" rel="noopener noreferrer" :aria-label="r.n" class="me-2 fs-3"><i class="bi" :class="r.i"></i></a></div>
