@@ -100,7 +100,6 @@ async function enviar () {
   <!-- HERO -->
   <header id="inicio" class="hero">
     <div class="hero-bg"><SmartImg name="hero-wide" fallback="carrusel15-3" pos="center 65%" eager alt="" /></div>
-    <p class="hand d-none d-lg-block">Grandes negocios<br>comienzan aquí.</p>
     <div class="container hero-in">
       <div class="col-lg-6 px-0">
         <p class="hero-brand"><span>LG</span> <em>Best Fin</em></p>
