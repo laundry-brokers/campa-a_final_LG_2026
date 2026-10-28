@@ -1,6 +1,4 @@
-// Contenido y datos de contacto centralizados.
-// Todo se muestra con interpolación de Vue ({{ }}), que escapa HTML automáticamente.
-// Nunca se usa v-html con estos datos.
+
 
 export const site = {
   phoneDisplay: '33 3797 2486',
@@ -14,7 +12,7 @@ export const site = {
     { name: 'Instagram', icon: 'bi-instagram', url: 'https://www.instagram.com/' },
     { name: 'YouTube', icon: 'bi-youtube', url: 'https://www.youtube.com/' }
   ],
-  // TODO: crear estas páginas (el aviso de privacidad es necesario porque el formulario recolecta datos personales).
+  
   legal: {
     terms: '/terminos-y-condiciones.html',
     privacy: '/aviso-de-privacidad.html'
@@ -99,7 +97,6 @@ export const bannerChecks = [
   'Tu lavandería, un mejor futuro'
 ]
 
-// TODO: validar/ajustar estas respuestas con LG antes de publicar (no venían en el PDF).
 export const faqs = [
   {
     q: '¿Qué promociones hay en lavadoras comerciales durante el Best Fin?',

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// CSP estricta solo en el build de produccion (en dev Vite necesita scripts inline para HMR)
+
 const csp = {
   name: 'inject-csp', apply: 'build',
   transformIndexHtml: () => [{

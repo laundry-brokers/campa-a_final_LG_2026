@@ -14,9 +14,23 @@ const menu = [
   { href: '#inicio', t: 'Inicio' }, { href: '#bestfin', t: 'Best Fin' }, { href: '#equipos', t: 'Equipos' },
   { href: '#ventajas', t: 'Ventajas' }, { href: '#faq', t: 'FAQ' }, { href: '#contacto', t: 'Contacto' }
 ]
-const niveles = [
-  { p: '10%', i: 'bi-check-lg', t: 'Primer pago' }, { p: '12%', i: 'bi-check-lg', t: 'Mens. cerca' }, { p: '15%', i: 'bi-unlock-fill', t: 'Nivel máximo desbloqueado' }
+// ===== NIVELES POR FECHA (hora de Ciudad de Mexico) 
+const NIVELES = [
+  { p: '10%', desde: '2026-11-01', f: '1 al 9 nov', t: 'Primer pago', i: 'bi-check-lg' },
+  { p: '12%', desde: '2026-11-10', f: '10 al 12 nov', t: 'Esta cerca', i: 'bi-check-lg' },
+  { p: '15%', desde: '2026-11-13', f: '13 al 30 nov', t: 'Nivel máximo desbloqueado', i: 'bi-unlock-fill' }
 ]
+function hoyMX () {
+  const q = new URLSearchParams(location.search).get('fecha')
+  if (q && /^\d{4}-\d{2}-\d{2}$/.test(q)) return q
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Mexico_City' }).format(new Date()) // YYYY-MM-DD
+}
+const hoy = hoyMX()
+let nivelActual = 0
+NIVELES.forEach((n, k) => { if (hoy >= n.desde) nivelActual = k })
+const pctActual = NIVELES[nivelActual].p
+// Solo se muestra el descuento vigente (el que corresponde a la fecha de hoy)
+const niveles = [NIVELES[nivelActual]]
 const beneficios = [
   { i: 'bi-coin', t: 'Equipos comerciales para crecer', d: 'Alta durabilidad, eficiencia y tecnología LG.' },
   { i: 'bi-graph-up-arrow', t: 'Espacios compactos y rentables', d: 'Soluciones que se adaptan a tu espacio y maximizan tu rentabilidad.' },
@@ -103,14 +117,13 @@ async function enviar () {
     <div class="container hero-in">
       <div class="col-lg-6 px-0">
         <p class="hero-brand"><span>LG</span> <em>Best Fin</em></p>
-        <h1 class="hero-h1">Llegamos al <span class="silver">15%</span></h1>
+        <h1 class="hero-h1">Llegamos al <span class="silver">{{ pctActual }}</span></h1>
         <p class="hero-sub">Ahora haz crecer tu proyecto.</p>
         <ul class="niveles list-unstyled">
-          <li v-for="(n, k) in niveles" :key="n.p" :class="{ max: k === niveles.length - 1 }"><b>{{ n.p }}</b><i class="bi" :class="n.i"></i><small>{{ n.t }}</small></li>
+          <li v-for="(n, k) in niveles" :key="n.p" class="max"><b>{{ n.p }}</b><span class="fecha">{{ n.f }}</span><i class="bi" :class="n.i"></i><small>{{ n.t }}</small></li>
         </ul>
         <div class="d-flex flex-wrap gap-2">
-          <a class="btn btn-lg-red" href="#contacto">Solicita tu cotización <i class="bi bi-arrow-right"></i></a>
-          <a class="btn btn-lg-ghost" href="#equipos">Ver equipos</a>
+          <a class="btn btn-lg-red btn-cotiza" href="#contacto">Solicita tu cotización <i class="bi bi-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -216,7 +229,7 @@ async function enviar () {
     <div class="banner-in">
       <div class="row align-items-center g-3">
         <div class="col-md-6 text-center text-md-start">
-          <span class="silver big15 d-lg-none">15%</span>
+          <span class="silver big15 d-lg-none">{{ pctActual }}</span>
           <div class="de-desc">DE<br>DESCUENTO</div>
           <p class="mb-0 mt-2">Ahora es el momento de crecer.</p>
         </div>

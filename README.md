@@ -5,4 +5,4 @@
 3. npm run dev   (http://localhost:5173)
 4. npm run build (sube /dist a tu servidor)
 
-Imagenes: src/assets/img (ver LEEME.txt)
+
